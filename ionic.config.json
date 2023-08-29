@@ -1,0 +1,7 @@
+{
+  "name": "sem4_Semestral_Apps",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
