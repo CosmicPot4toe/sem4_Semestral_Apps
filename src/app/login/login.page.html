@@ -10,6 +10,12 @@
       <ion-title size="large">Login</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-input
+					placeholder="Username"
+					name="user"
+					(ionInput)="onUserInput($event)"
+					#ionInputEl>
+			</ion-input>
   <ion-button color="danger" (click)="validarLogin()">
     Login
   </ion-button>
