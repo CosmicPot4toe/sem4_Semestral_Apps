@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  dato:String|null=null;
+  constructor(private activeRoute:ActivatedRoute)  {}
 
-  constructor() {}
-
+  ngOnInit(){
+    this.activeRoute.paramMap.subscribe(params=>{
+      this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
+    });
+  }
 }
