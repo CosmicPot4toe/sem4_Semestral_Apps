@@ -15,9 +15,21 @@ export class LoginPage implements OnInit {
   user=""
   pw=""
 
+  
+  contador= 0;
   validarLogin(){
-    // this.dato = this.UserModel;
-    this.router.navigate(['/home',this.user]);
+    for(const x of this.usuarios ){
+      if(x.nombre===this.user){
+        if(x.pass ===this.pw){
+          this.contador = this.contador+1;
+          console.log("usuario y pw correctos! bienvenido")
+          this.router.navigate(['/home', this.user]);//si usuario y pw son correctos
+        }
+      }
+    }
+    if(this.contador== 0){
+      console.log("usuario y/o password incorrectos!");
+    }
   }
 
   ngOnInit() {
