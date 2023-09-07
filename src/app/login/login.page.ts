@@ -1,27 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { IonInput } from '@ionic/angular';
-
+import { User } from '../app-model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
   constructor(private router:Router) { }
+  usuarios:User[]=[
+    {id:1,nombre:'pepito',pass:'1234'}
+  ];
   dato!:String;
-  
-	// UserModel = '';
-  @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
-  onUserInput(ev: { target: any; }) {
-    const value = ev.target!.value;
-    this.dato = value;
-  }
+  user=""
+  pw=""
 
   validarLogin(){
     // this.dato = this.UserModel;
-    this.router.navigate(['/home',this.dato]);
+    this.router.navigate(['/home',this.user]);
   }
 
   ngOnInit() {

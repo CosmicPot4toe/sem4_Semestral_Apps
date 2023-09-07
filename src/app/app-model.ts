@@ -1,5 +1,5 @@
-export interface Uusario{
+export interface User{
 	id:number,
 	nombre:String,
-	contraseña:String,
+	pass:String,
 };

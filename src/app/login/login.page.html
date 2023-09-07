@@ -10,13 +10,21 @@
       <ion-title size="large">Login</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-input
-					placeholder="Username"
-					name="user"
-					(ionInput)="onUserInput($event)"
-					#ionInputEl>
-			</ion-input>
-  <ion-button color="danger" (click)="validarLogin()">
-    Login
-  </ion-button>
+  <div class="container">
+    <ion-list>
+      <ion-input
+          placeholder="Username"
+          name="user"
+          [(ngModel)]="user">
+      </ion-input>
+      <ion-input
+          placeholder="Password"
+          name="pw"
+          [(ngModel)]="pw">
+      </ion-input>
+      <ion-button color="danger" (click)="validarLogin()">
+        Login
+      </ion-button>
+    </ion-list>
+  </div>
 </ion-content>
