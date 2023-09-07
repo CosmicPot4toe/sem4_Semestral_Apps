@@ -3,3 +3,17 @@
     margin-left: 15%;
     margin-right: 15%;
 }
+ion-toolbar {
+    ion-title{
+            text-align: center;
+            color: white;
+            font-size: xx-large;
+    }
+
+    --background: linear-gradient(90deg, rgb(16, 10, 129) 60%, rgba(255,158,0,1) 100%);
+    
+}
+ion-content {
+    --background: url(../../assets/img/Alameda.jpg);
+    // --background: green
+}
