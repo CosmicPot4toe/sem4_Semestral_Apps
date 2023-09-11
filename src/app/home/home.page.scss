@@ -22,3 +22,21 @@
 		text-decoration: none;
 	}
 }
+
+
+ion-toolbar {
+  ion-title{
+          text-align: center;
+          color: white;
+          font-size: xx-large;
+  }
+
+  --background: linear-gradient(90deg, rgb(16, 10, 129) 60%, rgba(255,158,0,1) 100%);
+  
+}
+ion-content{
+  --background:rgb(255, 255, 255);
+}
+h1{
+  color: black;
+}

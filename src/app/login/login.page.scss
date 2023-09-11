@@ -1,18 +1,29 @@
+:root{
+    --color-primario: rgb(16, 10, 129) ;
+--color-secundario: rgba(255,158,0,1) ;
+}
 .container {
-    text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
 		#login-box{
 			padding-left: 8px;
 			padding-right: 8px;
+            background: rgba(255, 255, 255, 0.747);
+            color: black;
+            text-align: center;
+            border-radius: 10%;
+        #boton1{
+            --background: rgba(255,158,0,1);
+            width: 100%;
+        } 
+        #boton2{
+            --background: rgb(16, 10, 129);
+            
+        }   
 		}
     margin: 15% 10%;
-    border-radius: 10%;
+    
+    
 }
-.e{
-    --background: rgba(250, 250, 250, 0.486) !important;
 
-}
 
 ion-toolbar {
 	ion-title{

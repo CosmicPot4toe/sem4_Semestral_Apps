@@ -1,12 +1,36 @@
 .container {
-	text-align: center;
-	margin-left: 15%;
-	margin-right: 15%;
 	#new-pass-box{
 		padding-left: 8px;
 		padding-right: 8px;
+		background: rgba(255, 255, 255, 0.747);
+		color: black;
+		text-align: center;
+		border-radius: 10%;
+	#boton1{
+		--background: rgba(255,158,0,1);
+		width: 100%;
+	} 
+	 
 	}
+margin: 15% 10%;
+
+
 }
 ion-button{
     font-size: 13q
+}
+ion-toolbar {
+	ion-title{
+			text-align: center;
+			color: white;
+			font-size: xx-large;
+	}
+  
+	--background: linear-gradient(90deg, rgb(16, 10, 129) 60%, rgba(255,158,0,1) 100%);
+	
+  }
+  ion-content {
+    
+    --background: center / cover no-repeat  url(../../assets/img/Alameda.jpg) ;
+    
 }

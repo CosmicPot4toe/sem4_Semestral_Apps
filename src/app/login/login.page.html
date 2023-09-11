@@ -1,7 +1,7 @@
 <ion-header  >
   <ion-toolbar >
     
-    <ion-title>Duoc</ion-title>
+    <ion-title>DuocUC</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,6 +15,7 @@
 		
 		<ion-list id="login-box">
 			<ion-input
+					
 					label="Usuario"
 					labelPlacement="floating"
 					name="user"
@@ -31,14 +32,15 @@
 				<ion-row>
 					<ion-col>
 						<ion-button
-							color="success"
+							id="boton1"
 							(click)="validarLogin()"
-							size="small"
+							size="default"
 						>Ingresar</ion-button>
 					</ion-col>
 					<ion-col>
 						<ion-button
-							color="danger"
+							id="boton2"
+							
 							[routerLink]="['/new-pass']"
 							size="small"
 						>Recuperar Contraseña</ion-button>
