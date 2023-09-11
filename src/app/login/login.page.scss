@@ -13,6 +13,7 @@
         #boton1{
             --background: rgba(255,158,0,1);
             width: 100%;
+            font-size: small;
         } 
         #boton2{
             --background: rgb(16, 10, 129);
@@ -41,7 +42,7 @@ ion-content {
 ion-button{
     font-size: 12q
 }
-ion-input{
-    text-align: center;
+#label{
+    --highlight-color:orange;
 }
 
