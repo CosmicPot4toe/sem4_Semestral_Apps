@@ -26,6 +26,9 @@ export class LoginPage implements OnInit {
 					this.contador = this.contador+1;
 					console.log("usuario y pw correctos! bienvenido")
 					this.router.navigate(['/home', this.user]);//si usuario y pw son correctos
+					//reset fields
+					this.pw="";
+					this.user="";
 				}
 			}
 		}

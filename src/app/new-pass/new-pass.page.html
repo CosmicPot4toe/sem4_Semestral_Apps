@@ -10,4 +10,22 @@
       <ion-title size="large">NewPass</ion-title>
     </ion-toolbar>
   </ion-header>
+	
+	<div class="container">
+		<br><br><br>
+		<ion-list id="new-pass-box">
+			<ion-input
+				label="Usuario"
+				labelPlacement="floating"
+				name="user"
+				[(ngModel)]="user">
+			</ion-input>
+			<br>
+			<ion-button
+				color="danger"
+				(click)="recover()"
+				size="small"
+			>Recuperar Contraseña</ion-button>
+		</ion-list>
+	</div>
 </ion-content>
