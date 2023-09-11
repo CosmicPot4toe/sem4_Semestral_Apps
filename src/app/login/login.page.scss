@@ -6,6 +6,16 @@
 			padding-left: 8px;
 			padding-right: 8px;
 		}
+    margin: 15% 10%;
+    border-radius: 10%;
+    
+
+    
+
+}
+.e{
+    --background: rgba(250, 250, 250, 0.486) !important;
+
 }
 
 ion-toolbar {
@@ -19,9 +29,14 @@ ion-toolbar {
     
 }
 ion-content {
-    --background: url('/assets/img/Alameda.jpg') 0 0/100% 100% no-repeat;
-    // --background: green
+    
+    --background: center / cover no-repeat  url(../../assets/img/Alameda.jpg) ;
+    
 }
 ion-button{
     font-size: 12q
 }
+ion-input{
+    text-align: center;
+}
+
