@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AnimationController, Animation } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,8 +9,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomePage {
   dato:String|null=null;
-  constructor(private activeRoute:ActivatedRoute)  {}
+	
+	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
+	private anim!:Animation
 
+  constructor(private activeRoute:ActivatedRoute,private animCtrl:AnimationController) {}
+	ngAfterViewInit(){
+		this.anim = this.animCtrl
+			.create()
+			.addElement(this.div.nativeElement)
+			.duration(1000)
+			.fromTo('transform', 'translateX(300px)', 'translateX(0px)')
+			.fromTo('opacity', '0', '1');
+			this.anim.play();
+	}
 
 
   ngOnInit(){
