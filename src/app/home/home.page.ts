@@ -10,6 +10,8 @@ export class HomePage {
   dato:String|null=null;
   constructor(private activeRoute:ActivatedRoute)  {}
 
+
+
   ngOnInit(){
     this.activeRoute.paramMap.subscribe(params=>{
       this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
