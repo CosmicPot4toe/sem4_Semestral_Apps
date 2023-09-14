@@ -13,6 +13,9 @@ export class HomePage {
 	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
 	private anim!:Animation
 
+	@ViewChild('E',{ read : ElementRef }) E!:ElementRef;
+	private EE!:Animation
+	
   constructor(private activeRoute:ActivatedRoute,private animCtrl:AnimationController) {}
 	ngAfterViewInit(){
 		this.anim = this.animCtrl
@@ -22,9 +25,14 @@ export class HomePage {
 			.fromTo('transform', 'translateX(300px)', 'translateX(0px)')
 			.fromTo('opacity', '0', '1');
 			this.anim.play();
+		this.EE = this.animCtrl
+			.create()
+			.addElement(this.E.nativeElement)
+			.duration(2000)
+			.fromTo('transform', 'translateY(3000px)', 'translateY(0px)')
+			this.EE.play();
+
 	}
-
-
   ngOnInit(){
     this.activeRoute.paramMap.subscribe(params=>{
       this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
