@@ -23,7 +23,9 @@ export class LoginPage implements OnInit {
 	dato!:String;
 	user=""
 	pw=""
-
+	ionViewDidLeave(){ //flick is GONE
+		this.load.stop();
+	}
 	ngAfterViewInit(){
 		this.load = this.animCtrl
 			.create()
@@ -44,7 +46,6 @@ export class LoginPage implements OnInit {
 					//reset fields
 					this.pw="";
 					this.user="";
-					this.load.stop();
 				}
 			}
 		}
