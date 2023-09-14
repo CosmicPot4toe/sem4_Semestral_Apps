@@ -8,7 +8,7 @@ import { AnimationController, Animation  } from '@ionic/angular';
 	styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+	ngOnInit(){}
 	
 	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
 	private load!:Animation
@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
 			.create()
 			.addElement(this.div.nativeElement)
 			.duration(310)
-			.fromTo('transform', 'translateX(0px)', 'translateX(-300px)');
+			.fromTo('transform', 'translateX(0px)', 'translateX(-120%)');
 	}
 	
 	contador= 0;
@@ -53,8 +53,4 @@ export class LoginPage implements OnInit {
 			console.log("usuario y/o password incorrectos!");
 		}
 	}
-	
-	ngOnInit() {
-	}
-
 }
