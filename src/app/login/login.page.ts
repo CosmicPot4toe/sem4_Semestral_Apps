@@ -10,7 +10,7 @@ import { AnimationController, Animation  } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
 	
-	@ViewChild('page',{ read : ElementRef }) page!:ElementRef;
+	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
 	private load!:Animation
 	
 	constructor(private router:Router,private animCtrl:AnimationController) { }
@@ -27,9 +27,9 @@ export class LoginPage implements OnInit {
 	ngAfterViewInit(){
 		this.load = this.animCtrl
 			.create()
-			.addElement(this.page.nativeElement)
-			.duration(1000)
-			.fromTo('opacity', '1', '0');
+			.addElement(this.div.nativeElement)
+			.duration(310)
+			.fromTo('transform', 'translateX(0px)', 'translateX(-300px)');
 	}
 	
 	contador= 0;
