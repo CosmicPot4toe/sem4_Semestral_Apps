@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../app-model';
 import { AnimationController, Animation  } from '@ionic/angular';
@@ -10,8 +10,8 @@ import { AnimationController, Animation  } from '@ionic/angular';
 export class LoginPage implements OnInit {
 	ngOnInit(){}
 	
-	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
-	private load!:Animation
+	// @ViewChild('div',{ read : ElementRef }) div!:ElementRef;
+	// private load!:Animation
 	
 	constructor(private router:Router,private animCtrl:AnimationController) { }
 	// usuarios:User[]=[
@@ -24,18 +24,19 @@ export class LoginPage implements OnInit {
 	user=""
 	pw=""
 	ionViewDidLeave(){ //flick is GONE
-		this.load.stop();
+		// this.load.stop();
 	}
 	ngAfterViewInit(){
-		this.load = this.animCtrl
-			.create()
-			.addElement(this.div.nativeElement)
-			.duration(310)
-			.fromTo('transform', 'translateX(0px)', 'translateX(-120%)');
+		// this.load = this.animCtrl
+			// .create()
+			// .addElement(this.div.nativeElement)
+			// .duration(310)
+			// .fromTo('transform', 'translateX(0px)', 'translateX(-120%)');
 	}
 	
 	// contador= 0;
-	// async validarLogin(){
+	async validarLogin(){
+	}
 		// for(const x of this.usuarios ){
 			// if(x.nombre===this.user){
 				// if(x.pass ===this.pw){

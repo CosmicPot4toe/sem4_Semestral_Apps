@@ -9,15 +9,16 @@ import { Router } from '@angular/router';
 })
 export class NewPassPage implements OnInit {
   constructor(private router:Router) { }
-	// usuarios:User[]=[
-	// 	{id:1,nombre:'pepito',pass:'1234'},
-	// 	{id:2,nombre:'Alejandro',pass:'4321'},
-	// 	{id:3,nombre:'Renato',pass:'0001'},
-	// ];
-	// user="";
+	//  usuarios:User[]=[
+	 	// {id:1,nombre:'pepito',pass:'1234'},
+	 	// {id:2,nombre:'Alejandro',pass:'4321'},
+	 	// {id:3,nombre:'Renato',pass:'0001'},
+	//  ];
+	user="";
 
-	// contador= 0;
-	// recover(){
+	//  contador= 0;
+	 recover(){
+	 }
 		// for(const x of this.usuarios ){
 			// if(x.nombre===this.user){
 				// this.contador = this.contador+1;

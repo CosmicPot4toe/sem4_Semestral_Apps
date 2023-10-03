@@ -10,7 +10,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
+export class AuthService {
   userData: any;
   constructor(
     public afStore: AngularFirestore,
@@ -18,7 +18,7 @@ export class AuthenticationService {
     public router: Router,
     public ngZone: NgZone
   ) {
-    this.ngFireAuth.authState.subscribe((user) => {
+    this.ngFireAuth.authState.subscribe((user:any) => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -78,7 +78,7 @@ export class AuthenticationService {
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['login']);
         });
         this.SetUserData(result.user);
       })
