@@ -1,28 +1,51 @@
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from '../app-model';
-import { AnimationController, Animation  } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AnimationController, Animation, LoadingController  } from '@ionic/angular';
+import { AuthService } from '../Services/fb/auth.service';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.page.html',
 	styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-	ngOnInit(){}
+	
 	
 	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
 	private load!:Animation
 	
-	constructor(private router:Router,private animCtrl:AnimationController) { }
-	usuarios:User[]=[
-		{id:1,nombre:'pepito',pass:'1234'},
-		{id:2,nombre:'Alejandro',pass:'4321'},
-		{id:3,nombre:'Renato',pass:'0001'},
-	];
+	logForm!:FormGroup;
 
-	dato!:String;
-	user=""
-	pw=""
+	constructor(private animCtrl:AnimationController,
+		public formBuilder:FormBuilder,public loadingCtrl:LoadingController,public authService:AuthService) { }
+
+	ngOnInit(){
+		this.logForm = this.formBuilder.group({
+			email:['',[
+				Validators.required,
+				Validators.email,
+				Validators.pattern("[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$")
+			]],
+			pw:['',[
+				Validators.required,
+				Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")
+			]]
+		})
+	}
+	get errorControl(){
+		return this.logForm?.controls;
+	}
+
+	async login(){
+		const loading =await this.loadingCtrl.create();
+		await loading.present();
+		if(this.logForm?.valid){
+			loading.dismiss()
+		}else{
+			loading.dismiss()
+		}
+	}
+
 	ionViewDidLeave(){ //flick is GONE
 		this.load.stop();
 	}
@@ -33,24 +56,5 @@ export class LoginPage implements OnInit {
 			.duration(310)
 			.fromTo('transform', 'translateX(0px)', 'translateX(-120%)');
 	}
-	
-	contador= 0;
-	async validarLogin(){
-		for(const x of this.usuarios ){
-			if(x.nombre===this.user){
-				if(x.pass ===this.pw){
-					this.contador = this.contador+1;
-					console.log("usuario y pw correctos! bienvenido")
-					await this.load.play();
-					await this.router.navigate(['/home', this.user]);//si usuario y pw son correctos
-					//reset fields
-					this.pw="";
-					this.user="";
-				}
-			}
-		}
-		if(this.contador== 0){
-			console.log("usuario y/o password incorrectos!");
-		}
-	}
+
 }
