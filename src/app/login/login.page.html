@@ -6,21 +6,19 @@
 
 <ion-content #page>
 	<div #div class="container">
-		<Form id="login-box" [formGroup]="logForm">
+		<form id="login-box" [formGroup]="logForm">
 			<ion-input
 				formControlName="email"
 				id="label"
 				label="Usuario"
-				labelPlacement="floating"
-				name="user">
+				labelPlacement="floating">
 			</ion-input>
 			<ion-input
 				formControlName="pw"
 				id="label"
 				type="password"
 				label="Contraseña"
-				labelPlacement="floating"
-				name="pw">
+				labelPlacement="floating">
 			</ion-input>
 			<ion-grid>
 				<ion-row>
@@ -40,6 +38,6 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-		</Form>
+		</form>
 	</div>
 </ion-content>

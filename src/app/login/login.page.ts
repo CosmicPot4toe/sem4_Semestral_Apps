@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AnimationController, Animation, LoadingController  } from '@ionic/angular';
 import { AuthService } from '../Services/fb/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.page.html',
@@ -17,7 +19,9 @@ export class LoginPage implements OnInit {
 	logForm!:FormGroup;
 
 	constructor(private animCtrl:AnimationController,
-		public formBuilder:FormBuilder,public loadingCtrl:LoadingController,public authService:AuthService) { }
+		public formBuilder:FormBuilder,public loadingCtrl:LoadingController,public authService:AuthService
+		,public route:Router
+		) { }
 
 	ngOnInit(){
 		this.logForm = this.formBuilder.group({
@@ -28,7 +32,7 @@ export class LoginPage implements OnInit {
 			]],
 			pw:['',[
 				Validators.required,
-				Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")
+				Validators.pattern("(?=.*[0-9])(?=.*[a-z]).{8,}")
 			]]
 		})
 	}
@@ -37,12 +41,19 @@ export class LoginPage implements OnInit {
 	}
 
 	async login(){
-		const loading =await this.loadingCtrl.create();
+		const loading = await this.loadingCtrl.create();
 		await loading.present();
 		if(this.logForm?.valid){
-			loading.dismiss()
-		}else{
-			loading.dismiss()
+			const user = await this.authService.loginUser(this.logForm.value.email,this.logForm.value.pw).catch((error)=>{
+				console.log(error)
+				loading.dismiss();
+			})
+			if(user){
+				loading.dismiss()
+				this.route.navigate(['/home'])
+			}else{
+				console.log('provide correct vlas')
+			}
 		}
 	}
 

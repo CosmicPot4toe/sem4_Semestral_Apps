@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  dato:String|null=null;
+//   dato!:string|null;
 	
 	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
 	private anim!:Animation
@@ -34,8 +34,8 @@ export class HomePage {
 
 	}
   ngOnInit(){
-    this.activeRoute.paramMap.subscribe(params=>{
-      this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
-    });
+    // this.activeRoute.paramMap.subscribe(params=>{
+    //   this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
+    // });
   }
 }
