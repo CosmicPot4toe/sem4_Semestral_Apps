@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AnimationController, Animation } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { BarcodeScannerOriginal } from '@awesome-cordova-plugins/barcode-scanner';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomePage {
 	@ViewChild('E',{ read : ElementRef }) E!:ElementRef;
 	private EE!:Animation
 	
-  constructor(private activeRoute:ActivatedRoute,private animCtrl:AnimationController) {}
+	code:any;
+  constructor(private activeRoute:ActivatedRoute,private animCtrl:AnimationController,private barcodeScannerOriginal: BarcodeScannerOriginal) {}
 	ngAfterViewInit(){
 		this.anim = this.animCtrl
 			.create()
@@ -33,9 +35,21 @@ export class HomePage {
 			this.EE.play();
 
 	}
+
+	
   ngOnInit(){
     this.activeRoute.paramMap.subscribe(params=>{
       this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
     });
+  }
+
+  scan(){
+	this.barcodeScannerOriginal.scan().then(barcodeData => {
+		this.code=barcodeData.text;
+		console.log('Barcode data', barcodeData, this.code);
+		
+	   }).catch(err => {
+		   console.log('Error', err);
+	   });
   }
 }
