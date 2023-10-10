@@ -7,14 +7,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BarcodeScannerOriginal } from '@awesome-cordova-plugins/barcode-scanner';
-import { Camera } from '@ionic-native/camera';
+import { CameraResultType } from '@capacitor/camera/dist/esm/definitions'; 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [ 
     BarcodeScannerOriginal,
-    Camera,
+    CameraResultType,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
   bootstrap: [AppComponent],

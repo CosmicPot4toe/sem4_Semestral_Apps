@@ -1,8 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AnimationController, Animation } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { BarcodeScannerOriginal } from '@awesome-cordova-plugins/barcode-scanner';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+
+
+import { Camera, CameraResultType } from '@capacitor/camera';
+
 
 @Component({
   selector: 'app-home',
@@ -44,34 +46,37 @@ export class HomePage {
     });
   }
 
-  scan(){
-	this.barcodeScannerOriginal.scan().then(barcodeData => {
-		this.code=barcodeData.text;
-		console.log('Barcode data', barcodeData, this.code);
+//   scan(){
+// 	this.barcodeScannerOriginal.scan().then(barcodeData => {
+// 		this.code=barcodeData.text;
+// 		console.log('Barcode data', barcodeData, this.code);
 		
-	   }).catch(err => {
-		   console.log('Error', err);
-	   });
-  }
+// 	   }).catch(err => {
+// 		   console.log('Error', err);
+// 	   });
+//   }
 
   
 
+
+const takePicture = async () => {
+  const image = await Camera.getPhoto({
+    quality: 90,
+    allowEditing: true,
+    resultType: CameraResultType.Uri
+  });
+
+  // image.webPath will contain a path that can be set as an image src.
+  // You can access the original file using image.path, which can be
+  // passed to the Filesystem API to read the raw data of the image,
+  // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
+  var imageUrl = image.webPath;
+
+  // Can be set to the src of an image now
+  imageElement.src = imageUrl;
+};
  
 }
 
-takePicture(){
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
 
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      this.base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      // Handle error
-    });
-}
+
