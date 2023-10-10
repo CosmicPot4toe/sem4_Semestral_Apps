@@ -24,4 +24,8 @@ export class AuthService {
 	async getProfile(){
 		return await this.ngFireAuth.currentUser
 	}
+
+	async isLoggedIn(){
+		return await this.getProfile()? true : false;
+	}
 }

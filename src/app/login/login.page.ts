@@ -44,15 +44,16 @@ export class LoginPage implements OnInit {
 		const loading = await this.loadingCtrl.create();
 		await loading.present();
 		if(this.logForm?.valid){
-			const user = await this.authService.loginUser(this.logForm.value.email,this.logForm.value.pw).catch((error)=>{
-				console.log(error)
+			const user = await this.authService.loginUser(this.logForm.value.email,this.logForm.value.pw).catch((err)=>{
+				console.log(err)
 				loading.dismiss();
 			})
 			if(user){
 				loading.dismiss()
 				this.route.navigate(['/home'])
+				this.logForm.reset()
 			}else{
-				console.log('provide correct vlas')
+				console.log('provide correct vals')
 			}
 		}
 	}
