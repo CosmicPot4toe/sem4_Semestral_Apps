@@ -6,17 +6,16 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BarcodeScannerOriginal } from '@awesome-cordova-plugins/barcode-scanner';
-import { CameraResultType } from '@capacitor/camera/dist/esm/definitions'; 
+//import { CameraResultType } from '@capacitor/camera/dist/esm/definitions'; 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [ 
-    BarcodeScannerOriginal,
-    CameraResultType,
+    
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+//CameraResultType,

@@ -1,9 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { AnimationController, Animation } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Camera, CameraResultType } from '@capacitor/camera';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   dato:String|null=null;
 	
 	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
@@ -21,7 +21,7 @@ export class HomePage {
 	private EE!:Animation
 	
 	code:any;
-  constructor(private activeRoute:ActivatedRoute,private animCtrl:AnimationController,private barcodeScannerOriginal: BarcodeScannerOriginal,public navCtrl: NavController, private camera: Camera) {}
+  constructor(private activeRoute:ActivatedRoute,private animCtrl:AnimationController) {}
 	ngAfterViewInit(){
 		this.anim = this.animCtrl
 			.create()
@@ -42,8 +42,10 @@ export class HomePage {
 	
   ngOnInit(){
     this.activeRoute.paramMap.subscribe(params=>{
-      this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
+      this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui
+      Camera.requestPermissions(); 
     });
+
   }
 
 //   scan(){
@@ -58,12 +60,15 @@ export class HomePage {
 
   
 
+async takePhoto(){
+  
 
-const takePicture = async () => {
+  debugger;
   const image = await Camera.getPhoto({
     quality: 90,
-    allowEditing: true,
-    resultType: CameraResultType.Uri
+    allowEditing: false,
+    resultType: CameraResultType.Uri,
+    source: CameraSource.Camera
   });
 
   // image.webPath will contain a path that can be set as an image src.
@@ -73,10 +78,11 @@ const takePicture = async () => {
   var imageUrl = image.webPath;
 
   // Can be set to the src of an image now
-  imageElement.src = imageUrl;
+  //imageElement.src = imageUrl;
 };
- 
 }
+ 
+
 
 
 
