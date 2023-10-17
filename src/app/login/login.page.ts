@@ -20,8 +20,7 @@ export class LoginPage implements OnInit {
 
 	constructor(private animCtrl:AnimationController,
 		public formBuilder:FormBuilder,public loadingCtrl:LoadingController,public authService:AuthService
-		,public route:Router
-		) { }
+		,public route:Router) { }
 
 	ngOnInit(){
 		this.logForm = this.formBuilder.group({

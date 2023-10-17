@@ -22,9 +22,7 @@ export class HomePage {
 
 	constructor(private animCtrl:AnimationController,public authService:AuthService
 		,public route:Router,private rickNmorty:RamService) {}
-	
-	img!:string
-	img_name!:string
+
 	
 	ngAfterViewInit(){
 		this.anim = this.animCtrl
@@ -51,12 +49,12 @@ export class HomePage {
 		)
 	}
 	ngOnInit(){
-		this.args.page = 5;
+		this.args.page = 0;
 		this.getChars()
 	}
 
 	getChars(event?:any){
-		this.rickNmorty.getChar(this.args.subscribe({
+		this.rickNmorty.getChar(this.args).subscribe({
 			next:(res:any)=>{
 				this.char.push(...res.results)
 				console.log()
@@ -64,7 +62,7 @@ export class HomePage {
 			error:(err:any)=>{
 
 			}
-			})
+			}
 		)
 	}
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy } from '@angular/router';
 
 import {AngularFireModule} from '@angular/fire/compat'
@@ -15,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-		BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+		BrowserModule, HttpClientModule,IonicModule.forRoot(), AppRoutingModule,
 		AngularFireModule,AngularFireAuthModule,
 		AngularFireModule.initializeApp(environment.firebaseConfig)
 	],
