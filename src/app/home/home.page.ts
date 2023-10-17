@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AnimationController, Animation } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Filesystem, Directory, Encoding, FileInfo } from '@capacitor/filesystem';
+
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,10 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  dato:String|null=null;
+
+	path: string= "TestImages";
+	photos: string []=[];
+   dato:String|null=null;
 	
 	@ViewChild('div',{ read : ElementRef }) div!:ElementRef;
 	private anim!:Animation
@@ -38,6 +43,7 @@ export class HomePage {
     this.activeRoute.paramMap.subscribe(params=>{
       this.dato=params.get('data');//data viene de la url, dato es la variable que podemos usar aqui 
     });
+	this.getPhoto();
   }
 
   async takePhoto(){
@@ -50,15 +56,42 @@ export class HomePage {
 	  resultType: CameraResultType.Uri,
 	  source: CameraSource.Camera
 	});
-  
-	// image.webPath will contain a path that can be set as an image src.
-	// You can access the original file using image.path, which can be
-	// passed to the Filesystem API to read the raw data of the image,
-	// if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-	var imageUrl = image.webPath;
+	if(image){
+	this.savePhoto(image.base64String!);
+}
   
 	// Can be set to the src of an image now
 	//imageElement.src = imageUrl;
   };
 
+  async savePhoto(photo: string){
+	await Filesystem.writeFile({
+    path: 'text.jpg',
+    data: 'photo',
+    directory: Directory.Documents,
+    
+  });
+
+
+}
+
+getPhoto(){
+	Filesystem.readdir({
+		path: this.path,
+		directory: Directory.Documents
+	}
+	).then(files => {
+		this.loadPhotos(files.files);
+	}).catch(err =>{
+		console.log(err);
+		Filesystem.mkdir({
+			path: this.path,
+			directory: Directory.Documents
+		})
+	})
+}
+
+loadPhotos(phots:FileInfo[]){
+
+}
 }
