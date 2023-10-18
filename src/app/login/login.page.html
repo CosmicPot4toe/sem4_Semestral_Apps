@@ -6,28 +6,26 @@
 
 <ion-content #page>
 	<div #div class="container">
-		<ion-list id="login-box">
+		<form id="login-box" [formGroup]="logForm">
 			<ion-input
-					id="label"
-					label="Usuario"
-					labelPlacement="floating"
-					name="user"
-					[(ngModel)]="user">
+				formControlName="email"
+				id="label"
+				label="Usuario"
+				labelPlacement="floating">
 			</ion-input>
 			<ion-input
-					id="label"
-					type="password"
-					label="Contraseña"
-					labelPlacement="floating"
-					name="pw"
-					[(ngModel)]="pw">
+				formControlName="pw"
+				id="label"
+				type="password"
+				label="Contraseña"
+				labelPlacement="floating">
 			</ion-input>
 			<ion-grid>
 				<ion-row>
 					<ion-col>
 						<ion-button
 							id="boton1"
-							(click)="validarLogin()"
+							(click)="login()"
 							size="default"
 						>Ingresar</ion-button>
 					</ion-col>
@@ -40,6 +38,6 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-		</ion-list>
+		</form>
 	</div>
 </ion-content>

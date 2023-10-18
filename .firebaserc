@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pgy4121-6ac36": {
+      "hosting": {
+        "app": [
+          "pgy4121-6ac36"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pgy4121-6ac36"
+  }
+}
