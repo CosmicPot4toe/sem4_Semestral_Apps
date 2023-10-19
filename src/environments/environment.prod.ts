@@ -8,5 +8,6 @@ export const environment = {
     authDomain: 'pgy4121-6ac36.firebaseapp.com',
     messagingSenderId: '835993719352',
   },
-  production: true
+  production: true,
+	ramBaseUrl:"https://rickandmortyapi.com/api/character"
 };

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../Services/fb/auth.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-new-pass',
@@ -7,27 +10,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-pass.page.scss'],
 })
 export class NewPassPage implements OnInit {
-  constructor(private router:Router) { }
 	
-	user="";
-
-	contador= 0;
-	recover(){
-		// for(const x of this.usuarios ){
-		// 	if(x.nombre===this.user){
-		// 		this.contador = this.contador+1;
-		// 		console.log("usuario existe")
-		// 		this.router.navigate(['/login']);//si usuario existe
-		// 		this.user="";
-		// 	}
-		// }
-		// if(this.contador== 0){
-		// 	console.log("usuario no existe");
-		// }
-	}
-
+	ps_rec!:FormGroup;
+  constructor(private route:Router,public formBuilder:FormBuilder,
+		public authService:AuthService,public loadingCtrl:LoadingController) { }
 
   ngOnInit() {
+		this.ps_rec = this.formBuilder.group({
+			email:['',[
+				Validators.required,
+				Validators.email,
+				Validators.pattern("[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$")
+				]
+			]
+		})
   }
-
+	get errorCtrl(){
+		return this.ps_rec?.controls;
+	}
+	async rec_pass(){
+		const loading = await this.loadingCtrl.create();
+		await loading.present();
+		if(this.ps_rec?.valid){
+			const user = await this.authService.resetPW(this.ps_rec.value.email).catch((err)=>{
+				console.log(err)
+				loading.dismiss()
+			}).then(()=>{
+				loading.dismiss()
+				this.route.navigate(['/login'])
+			})
+		}
+	}
 }
