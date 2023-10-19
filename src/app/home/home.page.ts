@@ -1,4 +1,3 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AnimationController, Animation } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -100,8 +99,13 @@ getPhoto(){
 }
 
 loadPhotos(phots:FileInfo[]){
-
-}
+// 	photos.forEach(File =>{
+// 		Filesystem.readFile({
+// 			path: '${this.path}/${file.name}',
+// 			directory: Directory.Documents
+// 		})
+// 	});
+ }
 	async logout(){
 		await this.authService.logout().catch((error)=>console.log(error))
 		.then(
