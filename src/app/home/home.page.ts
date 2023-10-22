@@ -1,5 +1,6 @@
 import { AnimationController, Animation } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding, FileInfo } from '@capacitor/filesystem';
