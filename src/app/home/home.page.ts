@@ -35,14 +35,14 @@ export class HomePage {
 		this.anim = this.animCtrl
 			.create()
 			.addElement(this.com.nativeElement)
-			.duration(1000)
+			.duration(400)
 			.fromTo('transform', 'translateX(300px)', 'translateX(0px)')
 			.fromTo('opacity', '0', '1');
 			this.anim.play();
 		this.EE = this.animCtrl
 			.create()
 			.addElement(this.E.nativeElement)
-			.duration(2000)
+			.duration(1000)
 			.fromTo('transform', 'translateY(3000px)', 'translateY(0px)')
 			this.EE.play();
 
