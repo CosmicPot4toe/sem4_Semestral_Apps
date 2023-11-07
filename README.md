@@ -27,3 +27,6 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
             provideFirestore(() => getFirestore())]
     })
 ```
+
+
+https://ionic.io/blog/how-to-build-an-ionic-barcode-scanner-with-capacitor
