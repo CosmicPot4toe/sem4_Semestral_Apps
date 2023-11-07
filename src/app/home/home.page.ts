@@ -2,11 +2,10 @@ import { AnimationController, Animation } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Filesystem, Directory, Encoding, FileInfo } from '@capacitor/filesystem';
-
 import { AuthService } from '../Services/fb/auth.service';
 import { RamService } from '../Services/api/ram/ram.service';
+
+import { QRService } from '../Services/api/qr-scan/qr.service';
 
 @Component({
 	selector: 'app-home',
@@ -14,9 +13,6 @@ import { RamService } from '../Services/api/ram/ram.service';
 	styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-	path: string= "TestImages";
-	photos: string []=[];
 	
 	@ViewChild('welcom',{ read : ElementRef }) com!:ElementRef;
 	private anim!:Animation
@@ -28,7 +24,7 @@ export class HomePage {
 	args={} as any;
 
 	constructor(private animCtrl:AnimationController,public authService:AuthService
-		,public route:Router,private rickNmorty:RamService) {}
+		,public route:Router,private rickNmorty:RamService, private qr:QRService) {}
 
 	
 	ngAfterViewInit(){
@@ -47,66 +43,16 @@ export class HomePage {
 			this.EE.play();
 
 	}
-
+	
   ngOnInit(){
-	  this.getPhoto();
 		this.args.page = 0;
-		this.getChars()
+		this.getChars();
   }
 
-  async takePhoto(){
-  
+  scan(){
+	this.qr.scan();
+  }
 
-	debugger;
-	const image = await Camera.getPhoto({
-	  quality: 90,
-	  allowEditing: false,
-	  resultType: CameraResultType.Uri,
-	  source: CameraSource.Camera
-	});
-	if(image){
-	this.savePhoto(image.base64String!);
-}
-  
-	// Can be set to the src of an image now
-	//imageElement.src = imageUrl;
-  };
-
-  async savePhoto(photo: string){
-	await Filesystem.writeFile({
-    path: 'text.jpg',
-    data: 'photo',
-    directory: Directory.Documents,
-    
-  });
-
-
-}
-
-getPhoto(){
-	Filesystem.readdir({
-		path: this.path,
-		directory: Directory.Documents
-	}
-	).then(files => {
-		this.loadPhotos(files.files);
-	}).catch(err =>{
-		console.log(err);
-		Filesystem.mkdir({
-			path: this.path,
-			directory: Directory.Documents
-		})
-	})
-}
-
-loadPhotos(phots:FileInfo[]){
-// 	photos.forEach(File =>{
-// 		Filesystem.readFile({
-// 			path: '${this.path}/${file.name}',
-// 			directory: Directory.Documents
-// 		})
-// 	});
- }
 	async logout(){
 		await this.authService.logout().catch((error)=>console.log(error))
 		.then(
