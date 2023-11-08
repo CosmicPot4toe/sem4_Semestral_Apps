@@ -1,5 +1,7 @@
 # sem4_Semestral_Apps
 
+la clave del keystore es: 123gallitoingles
+
 install firebase and @angular/fire 
 ```cmd
 npm i firebase

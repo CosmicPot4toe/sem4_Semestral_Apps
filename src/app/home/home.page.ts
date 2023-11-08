@@ -24,7 +24,7 @@ export class HomePage {
 	args={} as any;
 
 	constructor(private animCtrl:AnimationController,public authService:AuthService
-		,public route:Router,private rickNmorty:RamService, private qr:QRService) {}
+		,public route:Router,private rickNmorty:RamService, public qr:QRService) {}
 
 	
 	ngAfterViewInit(){
@@ -50,7 +50,7 @@ export class HomePage {
   }
 
   scan(){
-	this.qr.scan();
+		this.qr.scan();
   }
 
 	async logout(){
