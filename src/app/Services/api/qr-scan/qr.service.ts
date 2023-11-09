@@ -12,7 +12,7 @@ export class QRService implements OnInit{
   constructor(private alertController: AlertController) { }
 
   ngOnInit() {
-    BarcodeScanner.isSupported().then((result) => {
+    BarcodeScanner.isSupported().then((result:any) => {
       this.isSupported = result.supported;
     });
   }

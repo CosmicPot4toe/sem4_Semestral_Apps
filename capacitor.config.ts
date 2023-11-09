@@ -7,6 +7,13 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: 'https'
   }
-};
+,
+    android: {
+       buildOptions: {
+          keystorePath: 'c:\\Users\\CETECOM\\Documents\\GitHub\\sem4_Semestral_Apps\\RegistrAPP.keystore.jks',
+          keystoreAlias: 'RegistrAPP',
+       }
+    }
+  };
 
 export default config;
